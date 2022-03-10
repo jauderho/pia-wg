@@ -1,5 +1,5 @@
 certifi==2021.10.8
-chardet==3.0.4
+chardet==4.0.0
 idna==3.3
 pick==1.0.0
 requests==2.27.1
