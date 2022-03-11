@@ -26,7 +26,7 @@ Follow the prompts. When finished, you can exit the virtual environment with the
 The script should generate a `.conf` file that can be imported into the WireGuard utility.
 
 ## Linux (Debian/Ubuntu)
-Install dependencies, clone pia-wg project, and create a virual Python environment:
+Install dependencies, clone pia-wg project, and create a virtual Python environment:
 ```
 sudo apt install git python3-venv wireguard openresolv
 git clone https://github.com/hsand/pia-wg.git
