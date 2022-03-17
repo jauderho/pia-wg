@@ -34,6 +34,7 @@ jobs:
           disable-telemetry: true
           allowed-endpoints: 
             api.github.com:443
+            files.pythonhosted.org:443
             github.com:443
             proxy.golang.org:443
             pypi.org:443
