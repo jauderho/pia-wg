@@ -36,13 +36,13 @@ else:
 # Build config
 timestamp = int(datetime.now().timestamp())
 location = pia.region.replace(' ', '-')
-config_file = 'PIA-{}-{}.conf'.format(location, timestamp)
+config_file = 'PIA.conf'
 print("Saving configuration file {}".format(config_file))
 with open(config_file, 'w') as file:
     file.write('[Interface]\n')
     file.write('Address = {}\n'.format(pia.connection['peer_ip']))
     file.write('PrivateKey = {}\n'.format(pia.privatekey))
-    file.write('DNS = {},{}\n\n'.format(pia.connection['dns_servers'][0], pia.connection['dns_servers'][1]))
+    file.write('DNS = 1.1.1.2,9.9.9.9\n\n')
     file.write('[Peer]\n')
     file.write('PublicKey = {}\n'.format(pia.connection['server_key']))
     file.write('Endpoint = {}:1337\n'.format(pia.connection['server_ip']))
