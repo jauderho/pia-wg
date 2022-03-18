@@ -1,4 +1,4 @@
-FROM ubuntu:22.04@sha256:9fd089c601e4ce6b61bfbba987b63ec6b73eb4ef9f568ad38b58cf0bbb019bff
+FROM ubuntu:22.04@sha256:ff140c84a784dd3f74ca16982d7d96d8e4b5d945ee7a61c60d40d017d1274d80
 
 # Build command
 # time DOCKER_BUILDKIT=0 docker build -t piap . -f Dockerfile
