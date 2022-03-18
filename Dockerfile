@@ -1,8 +1,8 @@
 FROM ubuntu:22.04@sha256:ff140c84a784dd3f74ca16982d7d96d8e4b5d945ee7a61c60d40d017d1274d80
 
 # Build command
-# time DOCKER_BUILDKIT=0 docker build -t piap . -f Dockerfile
-#
+# time DOCKER_BUILDKIT=0 docker build -t pia-wg . -f Dockerfile
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 #ENV PIP_DISABLE_PIP_VERSION_CHECK=1
