@@ -20,6 +20,9 @@ on:
   schedule:
     - cron: '29 12 * * 1'
 
+permissions:  # added using https://github.com/step-security/secure-workflows
+  contents: read
+
 jobs:
   analyze:
     name: Analyze
