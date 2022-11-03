@@ -1,4 +1,4 @@
-FROM ubuntu:22.04@sha256:3bd5b8ba6b00f0737474c307b99fbbc684ec866c71204726b0c5156957a998a1
+FROM ubuntu:22.04@sha256:4b1d0c4a2d2aaf63b37111f34eb9fa89fa1bf53dd6e4ca954d47caebca4005c2
 
 # Build command
 # time DOCKER_BUILDKIT=0 docker build -t pia-wg . -f Dockerfile
