@@ -6,4 +6,4 @@ idna==3.4
 pick==2.2.0
 requests==2.28.2
 requests-toolbelt==0.10.1
-urllib3==1.26.13
+urllib3==1.26.14
