@@ -5,5 +5,5 @@ charset-normalizer==3.1.0 ; python_full_version >= '3.7.0'
 idna==3.4
 pick==2.2.0
 requests==2.29.0
-requests-toolbelt==0.10.1
+requests-toolbelt==1.0.0
 urllib3==1.26.15
