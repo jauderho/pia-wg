@@ -25,6 +25,7 @@
                 "sha256:92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==2023.7.22"
         },
         "chardet": {
@@ -33,6 +34,7 @@
                 "sha256:e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==5.2.0"
         },
         "charset-normalizer": {
@@ -122,6 +124,7 @@
                 "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.5'",
             "version": "==3.4"
         },
         "pick": {
@@ -130,6 +133,7 @@
                 "sha256:d301f358ee8eabe501795bb38a5160e05db68c0a89eb7ba38c7b667fc4673c8d"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.2.0"
         },
         "requests": {
@@ -138,6 +142,7 @@
                 "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.31.0"
         },
         "requests-toolbelt": {
@@ -146,6 +151,7 @@
                 "sha256:cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06"
             ],
             "index": "pypi",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.0.0"
         },
         "urllib3": {
@@ -154,6 +160,7 @@
                 "sha256:de7df1803967d2c2a98e4b11bb7d6bd9210474c46e8a0401514e3a42a75ebde4"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.0.4"
         }
     },
