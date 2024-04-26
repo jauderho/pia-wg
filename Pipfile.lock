@@ -144,12 +144,12 @@
         },
         "pick": {
             "hashes": [
-                "sha256:96920ebcfb9b8b6c2e50d9f211a700e5036611904169587a5a9245a645637a0d",
-                "sha256:d301f358ee8eabe501795bb38a5160e05db68c0a89eb7ba38c7b667fc4673c8d"
+                "sha256:78006b6c6b16f80921fe3e66c9730b3fa75b2732d464a9fcd4cab5a4ac75a42d",
+                "sha256:91bfa8c17dada639cf793cc4270db39fef8dc2d0c9c8a6be2f3d4d0d9ee58456"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.7'",
-            "version": "==2.2.0"
+            "version": "==2.3.2"
         },
         "requests": {
             "hashes": [
