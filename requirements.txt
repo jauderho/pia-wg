@@ -2,7 +2,7 @@
 --extra-index-url https://www.piwheels.org/simple
 certifi==2025.6.15
 chardet==5.2.0
-charset-normalizer==3.4.2
+charset-normalizer==3.4.3
 idna==3.10
 pick==2.4.0
 requests==2.32.4
