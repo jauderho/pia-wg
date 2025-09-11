@@ -1,10 +1,10 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
-certifi==2025.6.15
+certifi==2025.8.3
 chardet==5.2.0
-charset-normalizer==3.4.2
+charset-normalizer==3.4.3
 idna==3.10
 pick==2.4.0
-requests==2.32.4
+requests==2.32.5
 requests-toolbelt==1.0.0
 urllib3==2.5.0
