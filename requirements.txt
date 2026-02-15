@@ -1,6 +1,6 @@
 -i https://pypi.org/simple
 --extra-index-url https://www.piwheels.org/simple
-certifi==2025.10.5
+certifi==2026.1.4
 chardet==5.2.0
 charset-normalizer==3.4.4
 idna==3.11
