@@ -71,8 +71,15 @@ class piawg:
 
         r = s.get("https://{}/authv3/generateToken".format(meta_ip), headers={"Host": meta_cn},
                   auth=(username, password))
-        data = r.json()
-        if r.status_code == 200 and data['status'] == 'OK':
+        try:
+            data = r.json()
+        except ValueError:
+            # A rejected login, or a meta host having a bad day, answers with an
+            # empty or non-JSON body. Report that as a failed login rather than
+            # letting a JSONDecodeError escape: generate-config.py treats False
+            # as "ask for the credentials again".
+            return False
+        if r.status_code == 200 and data.get('status') == 'OK':
             self.token = data['token']
             return True
         else:
