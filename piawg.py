@@ -1,8 +1,41 @@
 import requests
 import json
 from requests_toolbelt.adapters import host_header_ssl
+import ssl
 import subprocess
 import urllib.parse
+
+# PIA issues its own certificates, so requests below are verified against this
+# CA rather than the system trust store.
+PIA_CA = 'ca.rsa.4096.crt'
+
+
+def pia_ssl_context():
+    """Build the SSL context used to talk to PIA endpoints.
+
+    PIA's root CA was issued in 2014 with a basicConstraints extension that is
+    not marked critical, which RFC 5280 requires of a CA certificate. Python
+    3.13 began enabling ssl.VERIFY_X509_STRICT on default contexts, and that
+    check rejects the certificate outright. Clear only that one flag: the
+    signature chain, the validity dates and the hostname are all still
+    verified, and passing cafile keeps trust pinned to PIA_CA alone rather
+    than widening it to the system CAs.
+    """
+    context = ssl.create_default_context(cafile=PIA_CA)
+    context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+    return context
+
+
+class PIAHostHeaderSSLAdapter(host_header_ssl.HostHeaderSSLAdapter):
+    """HostHeaderSSLAdapter that verifies using pia_ssl_context().
+
+    PIA publishes IP addresses rather than hostnames, so the adapter matches
+    the certificate against the Host header instead of the URL.
+    """
+
+    def init_poolmanager(self, *args, **kwargs):
+        kwargs['ssl_context'] = pia_ssl_context()
+        return super().init_poolmanager(*args, **kwargs)
 
 
 class piawg:
@@ -33,8 +66,8 @@ class piawg:
         # Some tricks to verify PIA certificate, even though we're sending requests to an IP and not a proper domain
         # https://toolbelt.readthedocs.io/en/latest/adapters.html#requests_toolbelt.adapters.host_header_ssl.HostHeaderSSLAdapter
         s = requests.Session()
-        s.mount('https://', host_header_ssl.HostHeaderSSLAdapter())
-        s.verify = 'ca.rsa.4096.crt'
+        s.mount('https://', PIAHostHeaderSSLAdapter())
+        s.verify = PIA_CA
 
         r = s.get("https://{}/authv3/generateToken".format(meta_ip), headers={"Host": meta_cn},
                   auth=(username, password))
@@ -56,8 +89,8 @@ class piawg:
         ip = self.server_list[self.region]['servers']['wg'][0]['ip']
 
         s = requests.Session()
-        s.mount('https://', host_header_ssl.HostHeaderSSLAdapter())
-        s.verify = 'ca.rsa.4096.crt'
+        s.mount('https://', PIAHostHeaderSSLAdapter())
+        s.verify = PIA_CA
 
         r = s.get("https://{}:1337/addKey?pt={}&pubkey={}".format(ip, urllib.parse.quote(self.token),
                                                                   urllib.parse.quote(self.publickey)), headers={"Host": cn})
