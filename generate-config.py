@@ -1,7 +1,6 @@
 from piawg import piawg
 from pick import pick
 from getpass import getpass
-from datetime import datetime
 
 pia = piawg()
 
@@ -34,8 +33,6 @@ else:
     print(response)
 
 # Build config
-timestamp = int(datetime.now().timestamp())
-location = pia.region.replace(' ', '-')
 config_file = 'PIA.conf'
 print("Saving configuration file {}".format(config_file))
 with open(config_file, 'w') as file:

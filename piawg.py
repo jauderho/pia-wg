@@ -23,6 +23,9 @@ def pia_ssl_context():
     """
     context = ssl.create_default_context(cafile=PIA_CA)
     context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+    # create_default_context() already refuses TLS below 1.2. State the floor so
+    # that it stays a property of this context and not of the Python defaults.
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
     return context
 
 
@@ -86,9 +89,12 @@ class piawg:
             return False
 
     def generate_keys(self):
-        self.privatekey = subprocess.run(['wg', 'genkey'], stdout=subprocess.PIPE, encoding="utf-8").stdout.strip()
+        # check=True: a failing wg returns an empty string on stdout, which would
+        # otherwise become an empty PrivateKey in the generated configuration.
+        self.privatekey = subprocess.run(['wg', 'genkey'], stdout=subprocess.PIPE, encoding="utf-8",
+                                         check=True).stdout.strip()
         self.publickey = subprocess.run(['wg', 'pubkey'], input=self.privatekey, stdout=subprocess.PIPE,
-                                        encoding="utf-8").stdout.strip()
+                                        encoding="utf-8", check=True).stdout.strip()
 
     def addkey(self):
         # Get common name and IP address for wireguard endpoint in region
