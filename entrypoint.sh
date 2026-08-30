@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 # Generate WG config and show QR code
-python3 generate-config.py
+/opt/venv/bin/python generate-config.py
 echo
 cat PIA.conf
 echo

@@ -7,43 +7,39 @@ This was created by reverse engineering the [manual-connections](https://github.
 
 pia-wg runs on both Windows and Linux.
 
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). uv reads `pyproject.toml` and `uv.lock`, then installs the exact locked versions into a project virtual environment. It also downloads the required Python interpreter, so you do not have to install Python yourself.
+
 ## Windows
-* Install the latest version of [Python 3](https://www.python.org/downloads/windows/)
-  * Select "Add Python to environment variables"
+* Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
 * Install [WireGuard](https://www.wireguard.com/install/)
 
-Open a command prompt and navigate to the directory where you placed the pia-wg utility. The following commands will create a virtual Python environment, install the dependencies, and run the tool.
+Open a command prompt and navigate to the directory where you placed the pia-wg utility, then run the tool.
 
 ```
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-python generate-config.py
+uv run generate-config.py
 ```
 
-Follow the prompts. When finished, you can exit the virtual environment with the `deactivate` command.
+Follow the prompts.
 
-The script should generate a `.conf` file that can be imported into the WireGuard utility.
+The script generates a `PIA.conf` file that can be imported into the WireGuard utility.
 
 ## Linux (Debian/Ubuntu)
-Install dependencies, clone pia-wg project, and create a virtual Python environment:
+Install dependencies and clone the pia-wg project:
 ```
-sudo apt install git python3-venv wireguard openresolv
-git clone https://github.com/hsand/pia-wg.git
+sudo apt install git wireguard openresolv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+git clone https://github.com/jauderho/pia-wg.git
 cd pia-wg
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
 ```
 
 Run the tool, and follow the prompts
 ```
-python3 generate-config.py
+uv run generate-config.py
 ```
 
 Copy the `.conf` file to `/etc/wireguard/`, and start the interface
 ```
-sudo cp PIA-Iceland-1605054556.conf /etc/wireguard/wg0.conf
+sudo cp PIA.conf /etc/wireguard/wg0.conf
 sudo wg-quick up wg0
 ```
 

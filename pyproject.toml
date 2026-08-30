@@ -1,0 +1,51 @@
+[project]
+name = "pia-wg"
+version = "0.2.0"
+description = "A WireGuard configuration utility for Private Internet Access"
+readme = "README.md"
+requires-python = ">=3.14"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Harrison Sand", email = "14326961+hsand@users.noreply.github.com" }]
+maintainers = [{ name = "Jauder Ho", email = "jauderho@users.noreply.github.com" }]
+keywords = ["wireguard", "vpn", "pia", "private-internet-access"]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet",
+]
+dependencies = [
+    "pick>=2.6.0",
+    "requests>=2.34.2",
+    "requests-toolbelt>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/jauderho/pia-wg"
+Upstream = "https://github.com/hsand/pia-wg"
+
+[dependency-groups]
+dev = ["ruff>=0.16.4"]
+
+[tool.uv]
+# The repository is a pair of flat scripts, not an installable package, so uv
+# resolves the dependencies without trying to build the project itself.
+package = false
+# Floors for indirect dependencies that carry security advisories. requests
+# pulls all three in, and its own floors are lower than the fixed versions.
+constraint-dependencies = [
+    "certifi>=2026.7.22",
+    "idna>=3.19",
+    "urllib3>=2.7.0",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.lint]
+# Stated so that a check here does not change with the machine-level ruff
+# configuration of whoever runs it.
+select = ["E4", "E7", "E9", "F", "PLW"]
